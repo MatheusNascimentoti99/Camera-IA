@@ -1,0 +1,53 @@
+edgetpu:
+  object_detector:
+    cameras:
+      camera_one:
+        fps: 10
+        labels:
+          - label: person
+            confidence: 0.8
+            require_motion: true
+          - label: car
+            confidence: 0.8
+            require_motion: true
+  image_classification:
+    cameras:
+      camera_one:
+    labels:
+      - dog
+ffmpeg:
+  camera:
+    camera_one:
+      name: Camera 1
+      host: !secret camera_ip
+      port: 554
+      path: /onvif1
+      username: !secret username
+      password: !secret password
+      protocol: rtsp
+      rtsp_transport: udp
+  mog2:
+  motion_detector:
+    cameras:
+      viseron_camera:
+        fps: 1
+      viseron_camera2:
+        fps: 1
+
+darknet:
+  object_detector:
+    cameras:
+      camera_one:
+        fps: 1
+        scan_on_motion_only: false
+        labels:
+          - label: person
+            confidence: 0.8
+            trigger_recorder: true
+nvr:
+  camera_one:
+
+webserver:
+
+logger:
+  default_level: debug
